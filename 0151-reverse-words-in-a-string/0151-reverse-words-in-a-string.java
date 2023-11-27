@@ -1,8 +1,8 @@
 class Solution {
   public String reverseWords(String s) {
-    StringBuilder sb = new StringBuilder(s).reverse(); // Reverse the whole string.
-    reverseWords(sb, sb.length());                     // Reverse each word.
-    return cleanSpaces(sb, sb.length());               // Clean up the spaces.
+    StringBuilder sb = new StringBuilder(s).reverse();
+    reverseWords(sb, sb.length());
+    return cleanSpaces(sb, sb.length());
   }
 
   private void reverseWords(StringBuilder sb, int n) {
@@ -10,27 +10,26 @@ class Solution {
     int j = 0;
 
     while (i < n) {
-      while (i < j || i < n && sb.charAt(i) == ' ') // Skip the spaces.
+      while (i < j || i < n && sb.charAt(i) == ' ')
         ++i;
-      while (j < i || j < n && sb.charAt(j) != ' ') // Skip the spaces.
+      while (j < i || j < n && sb.charAt(j) != ' ')
         ++j;
-      reverse(sb, i, j - 1); // Reverse the word.
+      reverse(sb, i, j - 1);
     }
   }
 
-  // Trim leading, trailing, and middle spaces
   private String cleanSpaces(StringBuilder sb, int n) {
     int i = 0;
     int j = 0;
 
     while (j < n) {
-      while (j < n && sb.charAt(j) == ' ') // Skip the spaces.
+      while (j < n && sb.charAt(j) == ' ')
         ++j;
-      while (j < n && sb.charAt(j) != ' ') // Keep non spaces
+      while (j < n && sb.charAt(j) != ' ')
         sb.setCharAt(i++, sb.charAt(j++));
-      while (j < n && sb.charAt(j) == ' ') // Skip the spaces.
+      while (j < n && sb.charAt(j) == ' ')
         ++j;
-      if (j < n) // Keep only one space.
+      if (j < n)
         sb.setCharAt(i++, ' ');
     }
 
